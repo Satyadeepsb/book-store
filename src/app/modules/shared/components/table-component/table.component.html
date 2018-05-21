@@ -1,0 +1,29 @@
+<div class="example-container mat-elevation-z8">
+    <div class="example-header">
+        <mat-form-field>
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+        </mat-form-field>
+    </div>
+
+    <mat-table #table [dataSource]="dataSource" matSort matSortActive="id" matSortDirection="asc">
+
+
+        <!-- Position Column -->
+        <ng-container *ngFor="let column of displayedColumns">
+            <ng-container *ngIf="column.fieldType" [matColumnDef]="column.fieldType">
+                <mat-header-cell *matHeaderCellDef mat-sort-header [disabled]="!column.allowSort">{{column.name}}
+                </mat-header-cell>
+                <mat-cell *matCellDef="let user"> {{user[column.fieldType] | initCap}}</mat-cell>
+            </ng-container>
+        </ng-container>
+
+
+        <mat-header-row *matHeaderRowDef="headers"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: headers;" [ngClass]="{'highlight': selectedRowIndex == row.id}"
+                 (click)="highlight(row)" style="cursor: pointer"></mat-row>
+    </mat-table>
+    <mat-paginator *ngIf="pagination" #paginator
+                   [pageSizeOptions]="paginationOptions? paginationOptions : [5,10,20]"
+                   [showFirstLastButtons]="showFirstLastButton" (page)="setPaging()">
+    </mat-paginator>
+</div>

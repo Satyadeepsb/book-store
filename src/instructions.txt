@@ -1,0 +1,12 @@
+ng new book-store --routing --style=scss
+ng add @angular/pwa
+ng add @angular/material
+ng add @ng-bootstrap/schematics
+ng g m core --routing --spec=false
+ng g m shared --routing --spec=false
+ng g m store --routing --spec=false
+ng g c book-list --spec=false
+ng g s book-data --spec=false
+ng g c login --spec=false
+ng g c page-not-found --spec=false
+ng g s store-load --spec=false

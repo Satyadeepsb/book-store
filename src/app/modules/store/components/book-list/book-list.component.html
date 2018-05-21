@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="row">
+    <h1>Books List</h1>
+  </div>
+  <div class="row">
+    <div class="col">
+      <button mat-raised-button color="primary" class="btn-w-sm" (click)="addBook()">
+        Add <i class="fas fa-plus-circle" style="margin-left: 5px"></i>
+      </button>
+    </div>
+    <div class="col">
+      <button mat-raised-button color="primary" class="btn-w-sm pull-right" (click)="logOut()">
+        LogOut <i class="fas fa-plus-circle" style="margin-left: 5px"></i>
+      </button>
+    </div>
+  </div>
+
+  <app-table-component *ngIf="bookList && bookList.length>0" [list]="bookList" [pagination]="true" [sortPresent]="true"
+                       [displayedColumns]="displayedColumns" [paginationOptions]="paginationOptions"
+                       [showFirstLastButton]="true" [pageSize]="5" (selectedRow)="selectedBook($event)"></app-table-component>
+  <div class="row" *ngIf="bookList && bookList.length == 0">
+    <p>No books Found</p>
+  </div>
+</div>
